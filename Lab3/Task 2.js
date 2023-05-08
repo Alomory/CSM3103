@@ -6,9 +6,9 @@ function sumOfDigits(number) {
     return (number % 10) + sumOfDigits(Math.floor(number / 10));
   }
 }
-let myNumber = 12345;
+let myNumber = prompt("Please, Enter a number?");
 let mySum = sumOfDigits(myNumber);
-console.log(mySum); // Output: 15
+console.log(mySum);
 
 
 //task 2
@@ -22,7 +22,7 @@ function power(x, y) {
     return x * power(x, y - 1);
   }
 }
-let myX = 2;
-let myY = 5;
+let myX = prompt("Please, Enter the value of x");
+let myY = prompt("Now, Enter the value of y (x^y)");
 let myPower = power(myX, myY);
-console.log(myPower); // Output: 32
+console.log(myPower);

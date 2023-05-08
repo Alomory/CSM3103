@@ -1,28 +1,23 @@
 // task 1 
 // _____________
 // 1
-function task1(){
 function square(number) {
   return number * number;
 }
-let theNumber = prompt('Enter a number?');
+let theNumber = prompt('Enter a number to square it?');
 let mySquare = square(theNumber);
-alert(mySquare); 
+console.log(mySquare); 
 // Output: number * number
-}
 //-----------------
 // 2 
-function task2(){
 function CubeOf2Number(num1, num2) {
   return Math.pow(num1,3) + Math.pow(num2,3);
 }
 let num1 = prompt('Enter the first number?');
 let num2 = prompt('Enter the second number?');
-alert(CubeOf2Number(num1,num2));
-}
+console.log(CubeOf2Number(num1,num2));
 //-----------------
 // 3
-function task3(){
 function reverseNumber(number) {
   let reversed = 0;
   while (number !== 0) {
@@ -32,17 +27,16 @@ function reverseNumber(number) {
   }
   return reversed;
 }
-let myNumber = 12345;
+let myNumber = prompt("Enter a number to get the reverse?");
 let myReversedNumber = reverseNumber(myNumber);
-alert(myReversedNumber); // Output: 54321
-}
-function task4 (){
+console.log(myReversedNumber);
+
+
 function isDivisible(num){
   for(let i = 1; i <= 100; i++){
     if(i % num == 0) 
-    alert(i);
+    console.log(i);
   }
 }
 let num3 = prompt('what number u want to test if divisible?');
 isDivisible(num3);
-}
