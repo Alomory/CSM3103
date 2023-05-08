@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 50%;
+        margin: auto;
+        background-color: azure;
+        font-family: arial, sans-serif;
+        text-align: center;
+        margin-top: 30vh;
+      }
+
+      .links p {
+        padding: 7px;
+        width: 150px;
+        background-color: lightgray;
+        border-radius: 5px;
+        margin: auto;
+        margin-bottom: 10px;
+        font-size: x-large;
+        position: relative;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      .links p::after {
+        content: " ";
+
+        width: 0px;
+        height: 1.5px;
+        position: absolute;
+        background-color: black;
+        left: 30px;
+        top: 30px;
+        border-radius: 20px;
+        transition: display 2s, width 1s;
+      }
+
+      .links p:hover:after {
+        display: inline-block;
+        width: 105px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h1>Links to the tasks:</h1>
+      <div class="links"></div>
+      <button onclick="return task1()">Task 1</button>
+      <button onclick="return task2()">Task 2</button>
+      <button onclick="return task3()">Task 3</button>
+      <button onclick="return task4()">Task 4</button>
+    </div>
+    <div id="list"></div>
+  </body>
+  <script src="./js/Task1.js"></script>
+  <script>
+    function task4 (){
+function isDivisible(num){
+let list = document.getElementById("list");
+list.innerHTML = "<table>";
+  for(let i = 1; i <= 100; i++){
+    if(i % num === 0) 
+    list.innerHTML = "<tr><td>"+ i+"</td></tr>";
+  }
+  list.innerHTML = "</table>";
+}
+let num3 = prompt('what number u want to test if divisible?');
+isDivisible(num3);
+}
+  </script>
+</html>
