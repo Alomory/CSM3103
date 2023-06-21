@@ -1,0 +1,125 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+}
+.selection-container{
+    background-color: #fff;
+    min-height: 100%;
+    width: 50%;
+    position: absolute;
+   left: -700px;
+   transition: ease-in-out 1s;
+}
+@media only screen and (max-width: 500px) {
+    .selection-container{
+        width: 100%;
+    }
+}
+.selection-header{
+    width: 100%;
+    height: fit-content;
+    background-color: #b9ca1c;
+    font-size: smaller;
+    margin-bottom: 10px;
+    color: #7f8a0d;
+}
+
+.selection-back-wrap{
+    width: fit-content;  
+}
+.selection-header a{
+    text-decoration: none;
+    color: black;
+}
+
+.back-link{
+    width: fit-content;
+    padding-left: 5px;
+    padding: 7px;
+    border-radius: 0 20px 20px 0;
+    color: #545e00;
+}
+.back-link:hover{
+    cursor: pointer;
+}
+.back-link:active{
+    background-color: #7f8a0d;
+    color: #b9ca1c;
+}
+.selection-main{
+    max-width: 80%;
+    width: 100%;
+    margin: 0 auto; /* Center align the container */
+    height: auto;
+    text-align: center;
+    
+}
+.maintext{
+    width: fit-content;
+    background-color: #d1e043;
+    margin: auto;
+    padding: 10px 40px 10px 40px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center align the columns */
+    
+}
+.col{
+    border: 0 none rgb(247, 208, 156);
+    background-color: #edfa71;;
+    
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    flex: 0 0 calc(33.33% - 10px); /* Set each column to occupy 1/3 of the available space minus margins */
+
+}
+.col:hover,.selection-text:hover{
+    background-color: #545e00;
+    color: #edfa71;
+}
+.selection-text {
+    font-weight: bolder;
+    font-size: 20px;
+    color: #545e00;
+}
+
+.selection-link{
+    text-decoration: none;
+    color: black;
+}
+@media only screen and (min-width: 768px) {
+    .selection-text {
+        font-size: 24px;
+    }
+    
+}
+
+
+
+
+
+
+

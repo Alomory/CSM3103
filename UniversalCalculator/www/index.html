@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
+            https://cordova.apache.org/docs/en/latest/
+        Some notes:
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <script src="https://kit.fontawesome.com/8f01d71009.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="selection-container">
+            <div class="selection-header">
+                <div class="selection-back-wrap">
+                    <div id="goback">
+                        <div class="back-link">
+                            <p><i class="fa-solid fa-arrow-left"></i> Back</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection-main">
+                <div class="maintext">
+                    <h3>Unit Converter</h3>
+
+                </div>
+                <div class="row">
+                    <a href="" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-calculator fa-2xl"></i>
+                                <br><br> Calculator
+                            </p>
+                        </div>
+                    </a>
+                    <a href="" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-calculator fa-2xl"></i>
+                                <br><br> Calculator
+                            </p>
+                        </div>
+                    </a>
+                    <a href="" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-calculator fa-2xl"></i>
+                                <br><br> Calculator
+                            </p>
+                        </div>
+                    </a>
+                    <a href="" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-calculator fa-2xl"></i>
+                                <br><br> Calculator
+                            </p>
+                        </div>
+                    </a>
+                    <a href="" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-calculator fa-2xl"></i>
+                                <br><br> Calculator
+                            </p>
+                        </div>
+                    </a>
+                    <a href="" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-calculator fa-2xl"></i>
+                                <br><br> Calculator
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <button id="test">Try me</button>
+    </div>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        $( document ).ready(function() {
+        $('#test').on('click', function(){
+            console.log("we entered the test function boundary");
+            $('.selection-container').css('left', "0px")
+        });
+        $('#goback').on('click', function(){
+            console.log("we entered the button function boundary");
+            $('.selection-container').css('left', "-700px")
+        });
+    });
+    </script>
+</body>
+
+</html>
