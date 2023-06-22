@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8f01d71009.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Universal Unit Converter(History)</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="selection-container">
+            <div class="selection-header">
+                <div class="selection-back-wrap">
+                    <div id="goback">
+                        <div class="back-link">
+                            <p><i class="fa-solid fa-arrow-left"></i> Back</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="gohistory" class="history">
+                    <p><i class="fa fa-history" aria-hidden="true"></i> History</p>
+                </div>
+            </div>
+
+            <div class="selection-main">
+                <div class="maintext">
+                    <h3>Unit Converter</h3>
+
+                </div>
+                <div class="row">
+                    <a href="index.html" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-scale-unbalanced-flip fa-2xl"></i>
+                                <br><br> BMI
+                            </p>
+                        </div>
+                    </a>
+                    <a href="time.html" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-clock fa-2xl"></i>
+                                <br><br> Time
+                            </p>
+                        </div>
+                    </a>
+                    <a href="temperature.html" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-temperature-half fa-2xl"></i>
+                                <br><br> Temperature
+                            </p>
+                        </div>
+                    </a>
+                    <a href="length.html" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-ruler-vertical fa-2xl"></i>
+                                <br><br> Length
+                            </p>
+                        </div>
+                    </a>
+                    <a href="age.html" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-calendar-days fa-2xl"></i>
+                                <br><br> Age
+                            </p>
+                        </div>
+                    </a>
+                    <a href="mass.html" class="selection-link">
+                        <div class="col">
+                            <p class="selection-text">
+                                <i class="fa-solid fa-weight-scale fa-2xl"></i>
+                                <br><br> Mass
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="section-selected-container">
+            <button id="menu">Menu</button>
+            <div class="selection-selected-content">
+
+                <div class="history-container">
+                    <div class="history-text">
+                        History
+                    </div>
+                    <div class="history-content">
+                        <div id="bmi" class="history-subsection">
+                            BMI <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div id="time" class="history-subsection">
+                            Time <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div id="temperature" class="history-subsection">
+                            Temperature <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div id="length" class="history-subsection">
+                            Length <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div id="age" class="history-subsection">
+                            Age <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div id="mass" class="history-subsection">
+                            Mass <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div id="resutl"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getDatabase, ref, get, set, child, update, remove }
+            from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        $(document).ready(function () {
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyDlfXppZAlKPhka8PshFutePTELu7CW0mQ",
+                authDomain: "innate-infusion-341416.firebaseapp.com",
+                databaseURL: "https://innate-infusion-341416-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "innate-infusion-341416",
+                storageBucket: "innate-infusion-341416.appspot.com",
+                messagingSenderId: "697421901220",
+                appId: "1:697421901220:web:633080c806f82db722a531"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+
+
+
+
+
+            const db = getDatabase();
+
+            // var count = 0;
+            // const query = db.ref('Universal/').orderByChild('timestamp').limitToLast(1);
+            // console.log('this is the last index'+ query)
+
+            // function FindData() {
+            //     const dbref = ref(db);
+
+            //     get(child(dbref, "People/BMI"))
+            //     .then((snapshot)=>{
+            //         if(snapshot.exists()){
+            //             var result = snapshot;
+            //             console.log(result);
+            //         } else {
+            //             alert("No data found");
+            //         }
+            //     })
+            //     .catch((error)=>{
+            //         alert(error)
+            //     })
+
+            // }
+
+
+            function FindData() {
+                const dbref = ref(db);
+
+                get(child(dbref, "Universal/BMI"))
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            const result = snapshot.val();
+                            console.log(result);
+                            Object.keys(result).forEach((key) => {
+                                const value = result[key];
+                                console.log(value); //debug
+                            });
+                            } else {
+                                console.log('No data found');
+                            }
+                    })
+                    .catch((error) => {
+                        console.log('Error retrieving data:', error);
+                    });
+            }
+
+
+
+            FindData();
+            // must
+            $('#menu').on('click', function () {
+                console.log("we entered the test function boundary");//debug
+                $('.selection-container').css('left', "0px")
+            });
+            $('#goback').on('click', function () {
+                console.log("we entered the button function boundary");//debug
+                $('.selection-container').css('left', "-1000px")
+            });
+            // adding history functionality
+            $('#gohistory').on('click', function () {
+                window.location.href = 'history.html';
+            });
+
+        });
+
+
+
+    </script>
+</body>
+
+</html>
