@@ -5,31 +5,28 @@
 }
 
 body{
-    background-color: antiquewhite;
+    background-color: #f3f8c3;
     font-family: Arial, Helvetica, sans-serif;
     
 }
 .container{
     width: 100%;
     height: 100vh;
-    background-color: #fff;
+    background-color: #f3f8c3;
 }
 .selection-container{
     background-color: #fff;
     min-height: 100%;
     width: 50%;
     position: absolute;
-   left: -700px;
+   left: -1000px;
    transition: ease-in-out 1s;
 }
-@media only screen and (max-width: 500px) {
-    .selection-container{
-        width: 100%;
-    }
-}
+
 .selection-header{
     width: 100%;
     height: fit-content;
+    padding: 3.2px;
     background-color: #b9ca1c;
     font-size: smaller;
     margin-bottom: 10px;
@@ -45,7 +42,7 @@ body{
 }
 
 .back-link{
-    width: fit-content;
+
     padding-left: 5px;
     padding: 7px;
     border-radius: 0 20px 20px 0;
@@ -55,6 +52,21 @@ body{
     cursor: pointer;
 }
 .back-link:active{
+    background-color: #7f8a0d;
+    color: #b9ca1c;
+}
+#menu{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #b9ca1c;
+    color: black;
+    border: none;
+    border-radius: 0 0 4px 4px;
+    cursor: pointer;
+    text-align: left;
+}
+#menu:active{
     background-color: #7f8a0d;
     color: #b9ca1c;
 }
@@ -87,7 +99,7 @@ body{
 .col{
     border: 0 none rgb(247, 208, 156);
     background-color: #edfa71;;
-    
+    width: 11rem;
     padding: 1rem;
     border-radius: 10px;
     margin: 10px;
@@ -110,12 +122,100 @@ body{
     text-decoration: none;
     color: black;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 980px) {
     .selection-text {
         font-size: 24px;
     }
+    .col{
+        width: 8rem;
+        
+    }
+    .selection-text{
+        font-size: 1rem;
+    }
+    .selection-main{
+        max-width: 90%;
+    }
+    .selection-container{
+        width: 100%;
+    }
     
 }
+
+/* BMI Body goes here */
+.section-selected-container {
+    width: 100%;
+
+  }
+  .selection-selected-content {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  #calculateBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #edfa71;
+    color: #545e00;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #result {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 480px) {
+    #container {
+      width: 90%;
+    }
+  }
+  select{
+    border: none;
+    outline: none;
+    background-color: none;
+    border-radius: 50px;
+
+  }
+  select:focus{
+    border: none;
+    outline: none;
+    background-color: none;
+  }
+  #selection-selected-main{
+    background-color: #b9ca1c;
+    border-radius: 30px;
+    
+    padding: 10px 20% 10px 20%;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 3rem;
+  }
 
 
 
