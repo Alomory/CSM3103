@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <title>temperature </title>
-    
+
 </head>
 
 <body>
@@ -21,6 +21,10 @@
                             <p><i class="fa-solid fa-arrow-left"></i> Back</p>
                         </div>
                     </div>
+
+                </div>
+                <div id="gohistory" class="history">
+                    <p><i class="fa fa-history" aria-hidden="true"></i> History</p>
                 </div>
             </div>
 
@@ -116,8 +120,54 @@
         </div>
 
     </div>
-    <script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getDatabase, ref, get, set, child, update, remove }
+            from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
         $(document).ready(function () {
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyDlfXppZAlKPhka8PshFutePTELu7CW0mQ",
+                authDomain: "innate-infusion-341416.firebaseapp.com",
+                databaseURL: "https://innate-infusion-341416-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "innate-infusion-341416",
+                storageBucket: "innate-infusion-341416.appspot.com",
+                messagingSenderId: "697421901220",
+                appId: "1:697421901220:web:633080c806f82db722a531"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+
+
+
+
+
+            const db = getDatabase();
+
+            // var count = 0;
+            // const query = db.ref('Universal/').orderByChild('timestamp').limitToLast(1);
+            // console.log('this is the last index'+ query)
+
+            function InsertData(value, from, to, result) {
+                set(ref(db, "Universal/Temperature/" + new Date().getTime() + "/"), {
+                    Value: value,
+                    From: from,
+                    To: to,
+                    Result: result,
+                })
+                    .then(() => {
+                        console.log("Data added successfully");
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    });
+            }
+
             $('#calculateBtn').on('click', function () {
                 var value = parseFloat($('#temperature').val());
                 var fromUnit = $('#fromUnit').val();
@@ -162,10 +212,17 @@
                         }
                         break;
                     default:
-                        result = 'Invalid conversion';
+                        return result = 'Invalid conversion';
                 }
-
-                $('#result').text(result+toUnit.toUpperCase());
+                if (isNaN(value) || value === 0) {
+                    $('#result').text("Please enter valid value.");
+                    return;
+                } else {
+                    $('#result').text(result + toUnit.toUpperCase());
+                    let temp = $('#result').text();
+                    console.log(temp);
+                    InsertData(value, fromUnit, toUnit, temp);
+                }
             });
 
             $('#menu').on('click', function () {
@@ -186,15 +243,15 @@
                 console.log('Selected value: ' + selectedValue);//debug
                 console.log('Selected index: ' + selectedIndex);//debug
 
-                    var selectedValueto = $('#toUnit').val();
-                    var selectedIndexto = $('#toUnit').prop('selectedIndex');
-                    var optionsLengthto = $('#toUnit').find('option').length;
-                    console.log("selected item ="+selectedIndex+" selected item to = "+selectedIndexto)
-                    if (selectedIndex == selectedIndexto) {
-                        // Change the selected option to the next index
-                        var nextIndex = (selectedIndexto + 1) % optionsLengthto;
-                        $('#toUnit').prop('selectedIndex', nextIndex);
-                    }
+                var selectedValueto = $('#toUnit').val();
+                var selectedIndexto = $('#toUnit').prop('selectedIndex');
+                var optionsLengthto = $('#toUnit').find('option').length;
+                console.log("selected item =" + selectedIndex + " selected item to = " + selectedIndexto)
+                if (selectedIndex == selectedIndexto) {
+                    // Change the selected option to the next index
+                    var nextIndex = (selectedIndexto + 1) % optionsLengthto;
+                    $('#toUnit').prop('selectedIndex', nextIndex);
+                }
             });
             $('#toUnit').change(function () {
                 var selectedValue = $(this).val();
@@ -214,6 +271,38 @@
                     $('#fromUnit').prop('selectedIndex', nextIndex);
                 }
             });
+            // adding history functionality
+            $('#gohistory').on('click', function () {
+                window.location.href = 'history.html';
+            });
+            const url = window.location.href;
+
+            // Extract the query string from the URL
+            const queryString = url.split('?')[1];
+
+            if (queryString == undefined) {
+                console.log('you didnt come from history page');//debug
+            } else {
+                console.log(queryString);//debug
+
+                const dbref = ref(db);
+
+                get(child(dbref, "Universal/Temperature/" + queryString))
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            $('#temperature').val(snapshot.val().Value);
+                            $('#fromUnit').val(snapshot.val().From) ;
+                            $('#toUnit').val(snapshot.val().To) ;
+                            $('#result').text(snapshot.val().Result);
+                        } else {
+                            alert("No data found");
+                        }
+                    })
+                    .catch((error) => {
+                        alert(error)
+                    })
+            }
+
         });
 
     </script>

@@ -93,24 +93,24 @@
                     </div>
                     <div class="history-content">
                         <div id="bmi" class="history-subsection">
-                            BMI <i class="fa-solid fa-chevron-down"></i>
+                            BMI <i id="bmi-icon" class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div id="time" class="history-subsection">
-                            Time <i class="fa-solid fa-chevron-down"></i>
+                            Time <i id="time-icon" class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div id="temperature" class="history-subsection">
-                            Temperature <i class="fa-solid fa-chevron-down"></i>
+                            Temperature <i id="temperature-icon" class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div id="length" class="history-subsection">
-                            Length <i class="fa-solid fa-chevron-down"></i>
+                            Length <i id="length-icon" class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div id="age" class="history-subsection">
-                            Age <i class="fa-solid fa-chevron-down"></i>
+                            Age <i id="age-icon" class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div id="mass" class="history-subsection">
-                            Mass <i class="fa-solid fa-chevron-down"></i>
+                            Mass <i id="mass-icon" class="fa-solid fa-chevron-down"></i>
                         </div>
-                        <div id="resutl"></div>
+                        
                     </div>
                 </div>
             </div>
@@ -145,53 +145,254 @@
 
             const db = getDatabase();
 
-            // var count = 0;
-            // const query = db.ref('Universal/').orderByChild('timestamp').limitToLast(1);
-            // console.log('this is the last index'+ query)
-
-            // function FindData() {
-            //     const dbref = ref(db);
-
-            //     get(child(dbref, "People/BMI"))
-            //     .then((snapshot)=>{
-            //         if(snapshot.exists()){
-            //             var result = snapshot;
-            //             console.log(result);
-            //         } else {
-            //             alert("No data found");
-            //         }
-            //     })
-            //     .catch((error)=>{
-            //         alert(error)
-            //     })
-
-            // }
-
-
-            function FindData() {
+            //BMI data Retrieval 
+            function FindBMIData() {
                 const dbref = ref(db);
-
                 get(child(dbref, "Universal/BMI"))
                     .then((snapshot) => {
                         if (snapshot.exists()) {
                             const result = snapshot.val();
                             console.log(result);
+                            let bmi = document.getElementById('bmi');
+                            let bmiContent = document.createElement('div');
+                            bmiContent.setAttribute('class', 'Unitscontent');
+                            let ol = document.createElement('ol');
+                            
                             Object.keys(result).forEach((key) => {
                                 const value = result[key];
-                                console.log(value); //debug
+                                console.log(key + " = {height = " + (value.Height * 100) + " wieght = " + value.Weight + "\n Result = " + value.Result + "}"); //debug
+                                let li = document.createElement('li');
+                                let a = document.createElement('a');
+                                $(a).text("Height = " + (value.Height * 100) + ", Wieght = " + value.Weight + ",  Result = " + value.Result)
+                                a.setAttribute('href','index.html?'+key)
+                                li.appendChild(a);
+                                ol.appendChild(li);
+
+
                             });
-                            } else {
-                                console.log('No data found');
-                            }
+                            bmiContent.appendChild(ol);
+                            bmi.appendChild(bmiContent);
+                            $('.Unitscontent').hide();
+                        } else {
+                            console.log('No data found');
+                        }
                     })
                     .catch((error) => {
                         console.log('Error retrieving data:', error);
                     });
             }
+            // end
+            //time
+            function FindTimeData() {
+                const dbref = ref(db);
+
+                get(child(dbref, "Universal/Time"))
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            const result = snapshot.val();
+                            console.log(result);
+                            let time = document.getElementById('time');
+                            let timeContent = document.createElement('div');
+                            timeContent.setAttribute('class', 'Unitscontent');
+                            let ol = document.createElement('ol');
+                            
+                            Object.keys(result).forEach((key) => {
+                                const value = result[key];
+                                console.log(key + " = {Value = " + value.Value+ ", wieght = " + value.Weight + "\n Result = " + value.Result + "}"); //debug
+                                let li = document.createElement('li');
+                                let a = document.createElement('a');
+                                $(a).text("Value = " + value.Value+ ", From = " + value.From +", to = " + value.To +  ",  Result = " + value.Result)
+                                a.setAttribute('href','time.html?'+key)
+                                li.appendChild(a);
+                                ol.appendChild(li);
 
 
+                            });
+                            timeContent.appendChild(ol);
+                            time.appendChild(timeContent);
+                            $('.Unitscontent').hide();
+                        } else {
+                            console.log('No data found');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('Error retrieving data:', error);
+                    });
+            }
+            //end time
+            // temp 
+            function FindTempData() {
+                const dbref = ref(db);
 
-            FindData();
+                get(child(dbref, "Universal/Temperature"))
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            const result = snapshot.val();
+                            console.log(result);
+                            let temperature = document.getElementById('temperature');
+                            let temperatureContent = document.createElement('div');
+                            temperatureContent.setAttribute('class', 'Unitscontent');
+                            let ol = document.createElement('ol');
+                            
+                            Object.keys(result).forEach((key) => {
+                                const value = result[key];
+                                console.log(key + " = {Value = " + value.Value+ ", from = " + value.From +"to = "+value.To+ "\n Result = " + value.Result + "}"); //debug
+                                let li = document.createElement('li');
+                                let a = document.createElement('a');
+                                $(a).text("Value = " + value.Value+ ", From = " + value.From +", to = " + value.To +  ",  Result = " + value.Result)
+                                a.setAttribute('href','temperature.html?'+key)
+                                li.appendChild(a);
+                                ol.appendChild(li);
+
+
+                            });
+                            temperatureContent.appendChild(ol);
+                            temperature.appendChild(temperatureContent);
+                            $('.Unitscontent').hide();
+                        } else {
+                            console.log('No data found');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('Error retrieving data:', error);
+                    });
+            }
+            //end
+            //Length
+            function FindLengthData() {
+                const dbref = ref(db);
+                get(child(dbref, "Universal/Length"))
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            const result = snapshot.val();
+                            console.log(result);
+                            let length = document.getElementById('length');
+                            let lengthContent = document.createElement('div');
+                            lengthContent.setAttribute('class', 'Unitscontent');
+                            let ol = document.createElement('ol');
+                            
+                            Object.keys(result).forEach((key) => {
+                                const value = result[key];
+                                console.log(key + " = {value = " + value.Value + " from = " + value.From + " to = "+value.To+"\n Result = " + value.Result + "}"); //debug
+                                let li = document.createElement('li');
+                                let a = document.createElement('a');
+                                $(a).text("Value = " + value.Value  + ", From = " + value.From + " To = "+value.To+",  Result = " + value.Result)
+                                a.setAttribute('href','length.html?'+key)
+                                li.appendChild(a);
+                                ol.appendChild(li);
+
+
+                            });
+                            lengthContent.appendChild(ol);
+                            length.appendChild(lengthContent);
+                            $('.Unitscontent').hide();
+                        } else {
+                            console.log('No data found');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('Error retrieving data:', error);
+                    });
+            }
+            // end
+               //Length
+               function FindAgeData() {
+                const dbref = ref(db);
+                get(child(dbref, "Universal/Age"))
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            const result = snapshot.val();
+                            console.log(result);
+                            let age = document.getElementById('age');
+                            let ageContent = document.createElement('div');
+                            ageContent.setAttribute('class', 'Unitscontent');
+                            let ol = document.createElement('ol');
+                            
+                            Object.keys(result).forEach((key) => {
+                                const value = result[key];
+                                console.log(key + " = {date = " + value.Date +"\n Result = " + value.Result + "}"); //debug
+                                let li = document.createElement('li');
+                                let a = document.createElement('a');
+                                $(a).text("Date = " + value.Date  +",  Result = " + value.Result)
+                                a.setAttribute('href','age.html?'+key)
+                                li.appendChild(a);
+                                ol.appendChild(li);
+
+
+                            });
+                            ageContent.appendChild(ol);
+                            age.appendChild(ageContent);
+                            $('.Unitscontent').hide();
+                        } else {
+                            console.log('No data found');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('Error retrieving data:', error);
+                    });
+            }
+            // end
+               //Length
+               function FindMassData() {
+                const dbref = ref(db);
+                get(child(dbref, "Universal/Mass"))
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            const result = snapshot.val();
+                            console.log(result);
+                            let mass = document.getElementById('mass');
+                            let massContent = document.createElement('div');
+                            massContent.setAttribute('class', 'Unitscontent');
+                            let ol = document.createElement('ol');
+                            
+                            Object.keys(result).forEach((key) => {
+                                const value = result[key];
+                                console.log(key + " = {value = " + value.Value + " from = " + value.From + " to = "+value.To+"\n Result = " + value.Result + "}"); //debug
+                                let li = document.createElement('li');
+                                let a = document.createElement('a');
+                                $(a).text("Value = " + value.Value  + ", From = " + value.From + " To = "+value.To+",  Result = " + value.Result)
+                                a.setAttribute('href','mass.html?'+key)
+                                li.appendChild(a);
+                                ol.appendChild(li);
+
+
+                            });
+                            massContent.appendChild(ol);
+                            mass.appendChild(massContent);
+                            $('.Unitscontent').hide();
+                        } else {
+                            console.log('No data found');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('Error retrieving data:', error);
+                    });
+            }
+            // end
+            $("#bmi").click(function () {  
+                $("#bmi-icon").toggleClass("fa-chevron-down fa-chevron-up");
+                $('#bmi .Unitscontent').slideToggle(); // Slide the div down/up
+            });
+            $("#time").click(function () {  
+                $("#time-icon").toggleClass("fa-chevron-down fa-chevron-up");
+                $('#time .Unitscontent').slideToggle(); // Slide the div down/up
+            });
+            $("#temperature").click(function () {  
+                $("#temperature-icon").toggleClass("fa-chevron-down fa-chevron-up");
+                $('#temperature .Unitscontent').slideToggle(); // Slide the div down/up
+            });
+            $("#age").click(function () {  
+                $("#age-icon").toggleClass("fa-chevron-down fa-chevron-up");
+                $('#age .Unitscontent').slideToggle(); // Slide the div down/up
+            });
+            $("#length").click(function () {  
+                $("#length-icon").toggleClass("fa-chevron-down fa-chevron-up");
+                $('#length .Unitscontent').slideToggle(); // Slide the div down/up
+            });
+            $("#mass").click(function () {  
+                $("#mass-icon").toggleClass("fa-chevron-down fa-chevron-up");
+                $('#mass .Unitscontent').slideToggle(); // Slide the div down/up
+            });
             // must
             $('#menu').on('click', function () {
                 console.log("we entered the test function boundary");//debug
@@ -205,7 +406,12 @@
             $('#gohistory').on('click', function () {
                 window.location.href = 'history.html';
             });
-
+            FindBMIData();
+            FindTimeData();
+            FindTempData();
+            FindLengthData();
+            FindAgeData();
+            FindMassData();
         });
 
 

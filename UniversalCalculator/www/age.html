@@ -37,6 +37,9 @@
                         </div>
                     </div>
                 </div>
+                <div id="gohistory" class="history">
+                    <p><i class="fa fa-history" aria-hidden="true"></i> History</p>
+                </div>
             </div>
 
             <div class="selection-main">
@@ -116,11 +119,54 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getDatabase, ref, get, set, child, update, remove }
+            from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
         $(document).ready(function () {
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyDlfXppZAlKPhka8PshFutePTELu7CW0mQ",
+                authDomain: "innate-infusion-341416.firebaseapp.com",
+                databaseURL: "https://innate-infusion-341416-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "innate-infusion-341416",
+                storageBucket: "innate-infusion-341416.appspot.com",
+                messagingSenderId: "697421901220",
+                appId: "1:697421901220:web:633080c806f82db722a531"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+
+
+
+
+
+            const db = getDatabase();
+
+            // var count = 0;
+            // const query = db.ref('Universal/').orderByChild('timestamp').limitToLast(1);
+            // console.log('this is the last index'+ query)
+
+            function InsertData( date, result) {
+                set(ref(db, "Universal/Age/" + new Date().getTime() + "/"), {
+                    Date: date,
+                    Result: result,
+                })
+                    .then(() => {
+                        console.log("Data added successfully");
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    });
+            }
             $('#calculateBtn').on('click', function () {
                 var birthDate = new Date($('#birthDate').val());
-
+                
                 // Validate birth date input
                 if (!$('#birthDate').val()) {
                     $('#result').text("Please enter your birth date.");
@@ -170,6 +216,7 @@
                 result += seconds + " second" + (seconds > 1 ? "s" : "");
 
                 $('#result').text(result);
+                InsertData($('#birthDate').val(),$('#result').text() )
             });
             // Get the current date
             var currentDate = new Date();
@@ -188,6 +235,35 @@
                 console.log("we entered the button function boundary"); // Debug
                 $('.selection-container').css('left', "-1000px");
             });
+            // adding history functionality
+            $('#gohistory').on('click', function () {
+                window.location.href = 'history.html';
+            });
+            const url = window.location.href;
+
+            // Extract the query string from the URL
+            const queryString = url.split('?')[1];
+
+            if (queryString == undefined) {
+                console.log('you didnt come from history page');//debug
+            } else {
+                console.log(queryString);//debug
+
+                const dbref = ref(db);
+
+                get(child(dbref, "Universal/Age/" + queryString))
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            $('#birthDate').val(snapshot.val().Date);
+                          
+                        } else {
+                            alert("No data found");
+                        }
+                    })
+                    .catch((error) => {
+                        alert(error)
+                    })
+            }
         });
 
 
