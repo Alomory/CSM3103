@@ -77,9 +77,7 @@
 
             const db = getDatabase();
 
-            // var count = 0;
-            // const query = db.ref('Universal/').orderByChild('timestamp').limitToLast(1);
-            // console.log('this is the last index'+ query)
+            
 
             function InsertData(value, from, to, result) {
                 set(ref(db, "Universal/Mass/" + new Date().getTime() + "/"), {

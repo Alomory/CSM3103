@@ -5,7 +5,6 @@
 }
 
 body{
-
     background-color: #f4eeff;
     font-family: Arial, Helvetica, sans-serif;
     
@@ -22,7 +21,6 @@ body{
     position: absolute;
    left: -1000px;
    transition: ease-in-out 1s;
-   z-index: 2;
 }
 
 .selection-header{
@@ -104,7 +102,7 @@ body{
 }
 .col{
     border: 0 none rgb(247, 208, 156);
-    background-color: #ae70fa;
+    background-color: #ae70fa;;
     width: 11rem;
     padding: 1rem;
     border-radius: 10px;
@@ -154,19 +152,12 @@ body{
 
   }
   .selection-selected-content {
-    width: 50%;
+    width: 90%;
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
   }
-  
-  
   h1 {
     text-align: center;
   }
@@ -200,7 +191,6 @@ body{
   #result {
     margin-top: 20px;
     font-weight: bold;
-    text-align: center;
   }
 
   /* Responsive styles */
@@ -223,9 +213,9 @@ body{
   }
   #selection-selected-main{
     background-color: #6100b5;
-    color: white;
-    border-radius: 30px;  
+    border-radius: 30px;
     padding: 10px 20% 10px 20%;
+    color: white;
     width: fit-content;
     margin: auto;
     margin-bottom: 3rem;
@@ -244,11 +234,12 @@ body{
 }
 .history-subsection{
     padding: 10px;
-    background-color: #f4eeff;
+    background-color: #CB84FF;
     margin: 5px 0 5px 0;
     border-radius: 10px;
     cursor: pointer;
 }
+
 .Unitscontent{
     background-color: #fff;
     padding: 10px;
@@ -261,24 +252,18 @@ body{
 
 }
 .Unitscontent a:active{
-    color: #545e00;
+    color: #26005e;
     background-color: white;
     color: #000;
 }
 .Unitscontent ol{
-    background-color: #f3f8c3;
+    background-color: #F3E2FF;
     padding-left: 20px;   
 }
 .Unitscontent li{
     margin-bottom: 5px;
     padding: 5px;
     width: fit-content;
-    background-color: #f3f8c3;
+    background-color: #F3E2FF;
     
 }
-
-
-
-
-
-
